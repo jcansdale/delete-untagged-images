@@ -10,6 +10,7 @@ async function run() {
     console.log(`Deleting untagged versions from /${owner}/packages/container/${package}`)
     const octokit = github.getOctokit(token);
     const response = await octokit.request(`GET /${owner}/packages/container/${package}/versions`, { per_page: 100 });
+    console.log(`response ${response}`)
     for(version of response.data) {
         if (version.metadata.container.tags.length == 0) {
             console.log(`delete ${version.id}`)

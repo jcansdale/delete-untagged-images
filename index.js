@@ -5,7 +5,7 @@ async function run() {
   try {
     const package = core.getInput('package');
     const owner = core.getInput('owner');
-    const token = core.getInput('owner');
+    const token = core.getInput('token');
 
     const octokit = github.getOctokit(token);
     const response = await octokit.request(`GET /${owner}/packages/container/${package}/versions`, { per_page: 100 });

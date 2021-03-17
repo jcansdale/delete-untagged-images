@@ -36,6 +36,6 @@ jobs:
                 }
             }
         env:
-          OWNER: users/jcansdale-test
+          OWNER: user
           PACKAGE_NAME: kipp2
           PER_PAGE: 1

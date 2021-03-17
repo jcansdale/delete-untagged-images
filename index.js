@@ -7,6 +7,7 @@ async function run() {
     const owner = core.getInput('owner');
     const token = core.getInput('token');
 
+    console.log(`Deleting untagged versions from /${owner}/packages/container/${package}`)
     const octokit = github.getOctokit(token);
     const response = await octokit.request(`GET /${owner}/packages/container/${package}/versions`, { per_page: 100 });
     for(version of response.data) {

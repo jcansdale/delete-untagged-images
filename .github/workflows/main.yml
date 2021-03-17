@@ -14,4 +14,4 @@ jobs:
         with:
           owner: jcansdale-test
           package: kipp2
-          token: ${{ github.token }}
+          token: ${{ secrets.DELETE_PACKAGES_TOKEN }}

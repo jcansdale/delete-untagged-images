@@ -1,13 +1,15 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Delete untagged verions'
+description: 'Delete untagged versins from ghcr.io package'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  token:
+    description: 'PAT with delete:packages scope'
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  owner:
+    description: 'Owner of the package'
+    required: true
+  package:
+    description: 'Name of the package'
+    required: true
 runs:
   using: 'node12'
   main: 'index.js'

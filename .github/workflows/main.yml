@@ -9,9 +9,9 @@ jobs:
       # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Dlete untagged versions step
+      - name: Delete untagged versions step
         uses: ./ # Uses an action in the root directory
         with:
           owner: jcansdale-test
           package: kipp2
-          token: ${{ secrets.DELETE_PACKAGES_TOKEN }}
+          token: ${{ github.token }}

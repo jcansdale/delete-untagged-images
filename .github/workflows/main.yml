@@ -5,6 +5,15 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to delete untagged versions
     steps:
+      - name: Build and push test image
+        run: |
+          docker login ghrc.io -u token -p ${{ secrets.DELETE_PACKAGES_TOKEN }}
+          echo 'FROM alpine' > Dockerfile
+          docker build . --tag ${{ env.IMAGE }}
+          docker push ${{ env.IMAGE }}
+        env:
+          IMAGE: ghcr.io/${{ github.repository }}
+
       # To use this repository's private action,
       # you must check out the repository
       - name: Checkout

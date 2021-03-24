@@ -15,7 +15,7 @@ jobs:
           docker login ghrc.io -u token -p ${{ secrets.DELETE_PACKAGES_TOKEN }}
           echo 'FROM alpine' > Dockerfile
           docker build . --tag ${{ env.IMAGE }}
-          docker push ${{ env.IMAGE }}
+          # docker push ${{ env.IMAGE }}
 
       # To use this repository's private action,
       # you must check out the repository

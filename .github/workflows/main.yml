@@ -12,10 +12,10 @@ jobs:
     steps:
       - name: Build and push test image
         run: |
-          docker login ghrc.io -u token -p ${{ secrets.DELETE_PACKAGES_TOKEN }}
+          docker login ghcr.io -u token -p ${{ secrets.DELETE_PACKAGES_TOKEN }}
           echo 'FROM alpine' > Dockerfile
           docker build . --tag ${{ env.IMAGE }}
-          # docker push ${{ env.IMAGE }}
+          docker push ${{ env.IMAGE }}
 
       # To use this repository's private action,
       # you must check out the repository

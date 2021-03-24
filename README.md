@@ -1,21 +1,27 @@
-# Hello world javascript action
+# Delete untagged images action
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+Action to delete untagged images from ghcr.io
 
 ## Inputs
 
-### `who-to-greet`
+### `owner`
 
-**Required** The name of the person to greet. Default `"World"`.
+**Required** The string "user" or "orgs/ORG_NAME"
 
-## Outputs
+### `package`
 
-### `time`
+**Required** The package name
 
-The time we greeted you.
+### `token`
+
+**Required** PAT with delete:packages and write:packages scopes
 
 ## Example usage
 
-uses: actions/hello-world-javascript-action@v1.1
+```
+uses: jcansdale/delete-untagged-images@master
 with:
-  who-to-greet: 'Mona the Octocat'
+  owner: user
+  package: PACKAGE_NAME
+  token: PAT with delete:packages and write:packages scopes
+```

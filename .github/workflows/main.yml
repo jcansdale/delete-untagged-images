@@ -12,7 +12,8 @@ jobs:
       - name: Build and push test image
         run: |
           docker login ghcr.io -u token -p ${{ secrets.DELETE_PACKAGES_TOKEN }}
-          echo 'FROM alpine' > Dockerfile
+          echo 'FROM alpine
+          LABEL com.github.sha="${{ github.sha }}"' > Dockerfile
           docker build . --tag ${{ env.IMAGE }}
           docker push ${{ env.IMAGE }}
 

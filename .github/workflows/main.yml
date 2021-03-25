@@ -1,10 +1,22 @@
 on: [push]
 
+env:
+  PACKAGE_NAME: delete-untagged-images
+  IMAGE: ghcr.io/${{ github.repository_owner }}/delete-untagged-images
+
 jobs:
   delete_untagged:
     runs-on: ubuntu-latest
     name: A job to delete untagged versions
     steps:
+      - name: Build and push test image
+        run: |
+          docker login ghcr.io -u token -p ${{ secrets.DELETE_PACKAGES_TOKEN }}
+          echo 'FROM alpine
+          LABEL com.github.sha="${{ github.sha }}"' > Dockerfile
+          docker build . --tag ${{ env.IMAGE }}
+          docker push ${{ env.IMAGE }}
+
       # To use this repository's private action,
       # you must check out the repository
       - name: Checkout
@@ -13,5 +25,5 @@ jobs:
         uses: ./ # Uses an action in the root directory
         with:
           owner: user
-          package: kipp2
+          package: ${{ env.PACKAGE_NAME }}
           token: ${{ secrets.DELETE_PACKAGES_TOKEN }}
